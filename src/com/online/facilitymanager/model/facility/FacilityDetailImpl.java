@@ -15,12 +15,12 @@ public class FacilityDetailImpl implements FacilityDetail
 	 * @param capacity
 	 * @param squareFeet
 	 */
-	public FacilityDetailImpl(int id, String name, int capacity, int squareFeet)
+	public FacilityDetailImpl(FacilityDetailBuilder builder)
 	{
-		this.id = id;
-		this.name = name;
-		this.capacity = capacity;
-		this.squareFeet = squareFeet;
+		this.id = builder.id;
+		this.name = builder.name;
+		this.capacity = builder.capacity;
+		this.squareFeet = builder.squareFeet;
 	}
 
 	/**
@@ -86,6 +86,60 @@ public class FacilityDetailImpl implements FacilityDetail
 	{
 		this.squareFeet = squareFeet;
 	}
-
 	
+	public static class FacilityDetailBuilder 
+	{
+		private int id;
+		private String name;
+		private int capacity;
+		private int squareFeet;
+		
+		private FacilityDetailBuilder() {}
+		
+		public static FacilityDetailBuilder newInstance()
+		{
+			return new FacilityDetailBuilder();
+		}
+
+		/**
+		 * @param id the id to set
+		 */
+		public FacilityDetailBuilder setId(int id)
+		{
+			this.id = id;
+			return this;
+		}
+
+		/**
+		 * @param name the name to set
+		 */
+		public FacilityDetailBuilder setName(String name)
+		{
+			this.name = name;
+			return this;
+		}
+
+		/**
+		 * @param capacity the capacity to set
+		 */
+		public FacilityDetailBuilder setCapacity(int capacity)
+		{
+			this.capacity = capacity;
+			return this;
+		}
+
+		/**
+		 * @param squareFeet the squareFeet to set
+		 */
+		public FacilityDetailBuilder setSquareFeet(int squareFeet)
+		{
+			this.squareFeet = squareFeet;
+			return this;
+		}
+		
+		public FacilityDetail build()
+		{
+			return new FacilityDetailImpl(this);
+		}
+	}
 }
