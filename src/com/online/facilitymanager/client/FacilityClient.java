@@ -103,7 +103,7 @@ public class FacilityClient
 		dt4.setYear(2019);
 		
 		Inspection i1 = f1.getInspections().get(0);
-		i1.setInspectionType("Fire");
+//		i1.setInspectionType("Fire");
 		Slot s2 = i1.getSlot();
 		Time st2 = s2.getStartTime();
 		st2.setHour(15);
