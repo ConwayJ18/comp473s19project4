@@ -1,19 +1,22 @@
 package com.online.facilitymanager.model.inspection;
 
+import java.util.ArrayList;
+
 import com.online.facilitymanager.model.slot.Slot;
 
-public class SafetyInspection extends Inspection
+public class InspectionImpl extends Inspection
 {
-	SafetyInspection() {
+	ArrayList<Inspection> inspections = new ArrayList<>();
+	
+      public InspectionImpl() {
         super();
-        this.inspectionType = "Safety";
       }
 
       /**
     	 * @param inspectionType
     	 * @param slot
     	 */
-    	public SafetyInspection(String inspectionType, Slot slot)
+    	public InspectionImpl(String inspectionType, Slot slot)
     	{
     		super(inspectionType, slot);
     	}
@@ -23,7 +26,7 @@ public class SafetyInspection extends Inspection
        */
       public String getInspectionType()
       {
-        return "Safety";
+        return "Fire";
       }
 
       /**
@@ -45,6 +48,7 @@ public class SafetyInspection extends Inspection
       /**
        * @param slot the slot to set
        */
+      @Override
       public void setSlot(Slot slot)
       {
         this.slot = slot;
@@ -54,4 +58,14 @@ public class SafetyInspection extends Inspection
 	public void acceptVisitor(Visitor v) {
 		v.visit(this);
 	}
- }
+	
+	public void add(Inspection i)
+	{
+		inspections.add(i);
+	}
+	
+	public void remove(Inspection i)
+	{
+		inspections.remove(i);
+	}
+}

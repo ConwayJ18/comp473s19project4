@@ -6,13 +6,14 @@ public class FireInspection extends Inspection
 {
       public FireInspection() {
         super();
+        this.inspectionType = "Fire";
       }
 
       /**
     	 * @param inspectionType
     	 * @param slot
     	 */
-    	public FireInspection(InspectionType inspectionType, Slot slot)
+    	public FireInspection(String inspectionType, Slot slot)
     	{
     		super(inspectionType, slot);
     	}
@@ -28,7 +29,7 @@ public class FireInspection extends Inspection
       /**
        * @param inspectionType the inspectionType to set
        */
-      public void inspectionType(InspectionType inspectionType)
+      public void inspectionType(String inspectionType)
       {
         this.inspectionType = inspectionType;
       }
@@ -49,4 +50,9 @@ public class FireInspection extends Inspection
       {
         this.slot = slot;
       }
+
+	@Override
+	public void acceptVisitor(Visitor v) {
+		v.visit(this);
+	}
 }

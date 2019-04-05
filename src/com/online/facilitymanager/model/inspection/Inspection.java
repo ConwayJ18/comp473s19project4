@@ -4,7 +4,7 @@ import com.online.facilitymanager.model.slot.Slot;
 
 public abstract class Inspection
 {
-  protected InspectionType inspectionType;
+  protected String inspectionType;
   protected Slot slot;
 
 	public Inspection() {}
@@ -13,7 +13,7 @@ public abstract class Inspection
 	 * @param inspectionType
 	 * @param slot
 	 */
-	public Inspection(InspectionType inspectionType, Slot slot)
+	public Inspection(String inspectionType, Slot slot)
 	{
 		this.inspectionType = inspectionType;
 		this.slot = slot;
@@ -27,7 +27,7 @@ public abstract class Inspection
   /**
    * @param inspectionType the inspectionType to set
    */
-  abstract public void inspectionType(InspectionType inspectionType);
+  abstract public void inspectionType(String inspectionType);
 
   /**
    * @return the slot
@@ -38,4 +38,6 @@ public abstract class Inspection
    * @param slot the slot to set
    */
   abstract public void setSlot(Slot slot);
+  
+  abstract public void acceptVisitor(Visitor v);
 }
