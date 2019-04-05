@@ -1,5 +1,9 @@
 package com.online.facilitymanager.model.use;
 
+import java.util.HashMap;
+
+import com.online.facilitymanager.model.slot.Slot;
+
 public class FacilityUserImpl implements FacilityUser
 {
 	private String userID;
@@ -7,9 +11,10 @@ public class FacilityUserImpl implements FacilityUser
 	private long userPhone;
 	private String userEmail;
 	private String userRole;
-	
+	private HashMap<UseRequest, Slot> schedule;
+
 	public FacilityUserImpl() {}
-	
+
 	/**
 	 * @param userID
 	 * @param userName
@@ -94,6 +99,21 @@ public class FacilityUserImpl implements FacilityUser
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
 	}
-	
-	
+
+	@Override
+	public HashMap<UseRequest, Slot> getSchedule()
+	{
+		return this.schedule;
+	}
+
+	public void setSchedule(HashMap<UseRequest, Slot> schedule)
+	{
+		for(UseRequest ur : schedule.keySet())
+		{
+			if(ur.getUser().equals(this)) //If the user owns an event
+			{
+				this.schedule.put(ur, schedule.get(ur)); //Add it to their personal schedule
+			}
+		}
+	}
 }
